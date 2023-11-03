@@ -1,3 +1,1 @@
 # Fastify-Lambda-Swagger
-
-test

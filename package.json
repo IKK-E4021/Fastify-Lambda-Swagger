@@ -1,0 +1,14 @@
+{
+  "name": "fastify-lambda-swagger",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "./node_modules/.bin/ts-node ./index.ts"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.10"
+  }
+}
