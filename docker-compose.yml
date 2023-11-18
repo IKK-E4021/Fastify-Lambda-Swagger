@@ -1,17 +1,15 @@
 version: "3.8"
 services:
-  db:
-    image: mysql:8.2.0
-    volumes:
-      - db-store:/var/lib/mysql
-      - ./logs:/var/log/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    environment:
-      - MYSQL_DATABASE=sample
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=root_password
+  localstack:
+    container_name: fastify-lambda-localstack
+    image: localstack/localstack:2.3.2
     ports:
-      - "4306:3306"
-volumes:
-  db-store:
+      - "127.0.0.1:4566:4566"            
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ./dist/function.zip:/opt/code/localstack/function.zip
+      - ./setup.sh:/opt/code/localstack/setup.sh
+    command: ["/bin/bash", "-c", "chmod u+x ./setup.sh"]

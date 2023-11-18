@@ -3,16 +3,20 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "ts-node ./src/app.ts"
+    "start": "ts-node ./src/app.ts",
+    "zip": "rm -rf ./dist && npm run build && ./ci.sh && cd dist && zip -r -q ./function.zip ."
   },
   "dependencies": {
+    "@fastify/aws-lambda": "^3.4.2",
     "@fastify/swagger": "^8.12.0",
     "@fastify/swagger-ui": "^1.10.1",
+    "aws-lambda": "^1.0.7",
     "fastify": "^4.24.3",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@tsconfig/node20": "^20.1.2",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/aws-lambda": "^8.10.126",
     "@types/node": "^20.8.10",
     "typescript": "^5.2.2"
   }
